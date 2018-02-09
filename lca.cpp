@@ -69,20 +69,20 @@ int lca_query(int N, int p, int q) {
 	  int lim =  lvl[q] ;
 	  int val  = --j ;
 
-  	printf("max val of j %d %d\n" , j  ,lim ) ;
-  	for( ; (1<<j ) >= 0 ; j--)
-  	  	if( lvl[_pow[p][j] ] >= lim  ){
-	  		p =  _pow[p][j] ;
-  	}
+      printf("max val of j %d %d\n" , j  ,lim ) ;
+  	  for( ; (1<<j ) >= 0 ; j--)
+  	      if( lvl[_pow[p][j] ] >= lim  ){
+	  	  p =  _pow[p][j] ;
+  	  }
     
-    if(p == q ) return p ; 
+     if(p == q ) return p ; 
  
-   for( j = val ; j >= 0 ; j--)
-       if(_pow[p][j] != -1 && _pow[p][j] != _pow[q][j] ){
+     for( j = val ; j >= 0 ; j--)
+         if(_pow[p][j] != -1 && _pow[p][j] != _pow[q][j] ){
     	     p = _pow[p][j] ;
-    		   q = _pow[q][j] ;
-    }
-    return par[p] ;
+    		 q = _pow[q][j] ;
+     }
+return par[p] ;
 }
 /*
 void solve(){
