@@ -28,7 +28,7 @@ typedef long long ll ;
 vector<int > g[M+5] , cost[M+5];
 int _pow[M+ 5][M+5]  ,dis[M+5 ][M+5 ] ,  par[M+ 5] ,lvl[M+5]  ;
 bool vis[M+5] ;
-
+/// dfs / init / query  
 
 void dfs(int u ) {
     int i ;
@@ -36,11 +36,11 @@ void dfs(int u ) {
 	  rep(i , g[u].size() ) {
 		int v = g[u][i] ;
 		
-        if(vis[v ] ==  false ) {
-            printf("visiting %d\n" , v);
-			      par[v ] = u ;
-			      lvl[v] = lvl[u]+1 ;
-			      dfs(v ) ;
+          if(vis[v ] ==  false ) {
+          // printf("visiting %d\n" , v);
+			  par[v ] = u ;
+			  lvl[v] = lvl[u]+1 ;
+			  dfs(v ) ;
 		}
 	}
 }
@@ -48,11 +48,11 @@ void dfs(int u ) {
 
 int lca_init( int n ) {
   	int i ,j  ;
-	  mem( _pow, -1 );
+	mem( _pow, -1 );
 
   	rep(i  ,n ) _pow[i][0] =  par[i] ;
 
-	  for( j = 1 ; (1 << j ) < n ; j++)
+	for( j = 1 ; (1 << j ) < n ; j++)
 		    for(i = 0  ; i < n  ; i++ ){
    	    		if(_pow[i][j-1 ] != -1 )
 		    		_pow[i][j] = _pow[ _pow[i][j-1 ] ][j-1 ] ;
@@ -84,7 +84,7 @@ int lca_query(int N, int p, int q) {
     }
     return par[p] ;
 }
-
+/*
 void solve(){
 	  int i , j  , k  , n  ;
 	  cin >> n >> k ;
@@ -112,7 +112,7 @@ void solve(){
     printf("\nlca : ") ;
     cout << lca_query(n ,2, 4 ) << endl  ;
 }
-
+*/
 int main() {
 
 		freopen("in.txt", "r",stdin );
