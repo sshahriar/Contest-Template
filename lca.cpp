@@ -60,16 +60,16 @@ int lca_init( int n ) {
 }
 
 int lca_query(int N, int p, int q) {
-	  int j  , k ;
+    int j  , k ;
 
-	  if( lvl[q] > lvl[p] ) swap(p, q)  ;
-	  for( j = 0 ;  (1<< j ) < N  ; j++ ) ;
+    if( lvl[q] > lvl[p] ) swap(p, q)  ;
+    
+    for( j = 0 ;  (1<< j ) < N  ; j++ ) ;
 
+     int lim =  lvl[q] ;
+     int val  = --j ;
 
-	  int lim =  lvl[q] ;
-	  int val  = --j ;
-
-      printf("max val of j %d %d\n" , j  ,lim ) ;
+     printf("max val of j %d %d\n" , j  ,lim ) ;
   	  for( ; (1<<j ) >= 0 ; j--)
   	      if( lvl[_pow[p][j] ] >= lim  ){
 	  	  p =  _pow[p][j] ;
@@ -83,6 +83,19 @@ int lca_query(int N, int p, int q) {
     		 q = _pow[q][j] ;
      }
 return par[p] ;
+}
+
+int kth_par(int n , int p , int k ) {		// returns k th parent of a node
+	int i , j ;
+	for(j = 0 ; (1 << j ) <  n ; j++ ) ;
+     
+	int var  = lvl[p] - k  ;
+	for( ; j>= 0  ; j--) if(_pow[p][j] !=  -1 && lvl[ _pow[p][j] ] >= var  ) {
+		p  = _pow[p][j] ;
+	}
+
+	return p ;
+
 }
 /*
 void solve(){
