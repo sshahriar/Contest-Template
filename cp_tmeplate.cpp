@@ -3,13 +3,14 @@
 using namespace std ;
 
 #define M 100000
-#define inf 1 << 30
+#define inf 1<<30
 #define mp make_pair
 #define pb push_back
 #define ff first
 #define ss second
 #define sz(x ) x.size()
 #define pii pair<int , int>
+#define vi vector<int>
 #define forn(i,a,n ) for(int  i = a ; i <= n ; i++ )
 #define rep(i ,n ) for(int i = 0 ; i < n ; i++ )
 #define repi(i ,n ) for(int i = 1 ; i <= n ; i++ )
@@ -19,7 +20,6 @@ using namespace std ;
 #define lowb(x ,y) lower_bound(all(x  ) , y ) - x.begin()
 #define uperb(x, y) upper_bound(all(x) ,y )-x.begin()
 #define printa(x,y ) rep(i,y ) cerr << x <<' ' ;  cerr << "\n"; 
-
 #define dbg(args...) do { print(args); } while(0); cerr<< endl;
 
 int sett(int n, int pos  ) { return n = n|(1<< pos) ; }
@@ -50,9 +50,10 @@ ostream &operator<<(ostream &os, const vector<T> &v){
     cerr<<endl;
 }
 
-// code starts
-
 typedef long long ll ;
+typedef unsigned long long ull ; 
+
+// code starts
 
 int a[M+2] ;
 
