@@ -19,7 +19,7 @@ using namespace std ;
 #define all(a ) a.begin() , a.end()
 #define lowb(x ,y) lower_bound(all(x  ) , y ) - x.begin()
 #define uperb(x, y) upper_bound(all(x) ,y )-x.begin()
-#define printa(x,y ) rep(i,y ) cerr << x <<' ' ;  cerr << "\n"; 
+#define printa(x,y ) rep(i,y ) cerr << x[i] <<' ' ;  cerr << "\n"; 
 #define dbg(args...) do { print(args); } while(0); cerr<< endl;
 
 int sett(int n, int pos  ) { return n = n|(1<< pos) ; }
