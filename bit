@@ -1,0 +1,21 @@
+ll tree[M+2] ;
+
+void update(int a , int val ) {
+
+    for( int i = a; i< M ; i+= i&-i )  {
+        tree[i] += val ; 
+
+
+    } 
+}
+
+ll res(int n ) {
+    ll ans = 0 ;
+
+    for(int i = n ; i>= 1; i -= i&-i ){
+        ans += tree[i] ; 
+
+    } 
+    return ans ; 
+
+}
