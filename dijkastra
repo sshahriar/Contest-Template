@@ -1,0 +1,67 @@
+struct _edge{
+    int node , w  ;
+    _edge() {} ;
+    _edge(int a, int b ) { node = a ;  w= b ; } ;
+
+    bool operator<(_edge x ) const{
+        return w >= x.w  ;
+    }
+
+};
+
+vector< int > graph[M+2] , cost[M+2] , vec;
+
+ll dist[M+2] , vis[M+2] , N ;
+ll arr[20][20]  , imp[20] ;
+
+void clr() {
+    rep( i,M ) { graph[i].clear() ; cost[i].clear() ; }
+    vec.clear() ;
+
+
+}
+
+void dijkastra(int u ) {
+
+    //mem(dist  , ) ;
+    rep(i , 20) dist[i] = (1LL<< 62);
+   // dbg(dist[10] ) ;
+
+    dist[u] = 0 ;
+    priority_queue< _edge > pq ;
+    pq.push( _edge( u ,  0 ) ) ;
+
+    while(!pq.empty() ) {
+        _edge tmp  = pq.top() ;
+        pq.pop()  ;
+        int u = tmp.node  ;
+
+       // dbg("visit : " , u  ) ;
+
+        rep(i , sz( graph[ u ] )   ) {
+
+            int v =  graph[ u ][i]   ;
+
+            if( dist[u] + cost[u][i] < dist[v] ) {
+                dist[v ] =  cost[ u ][i] + dist[u] ;
+                pq.push(_edge(v, dist[v] ) )  ;
+
+
+            }
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+}
