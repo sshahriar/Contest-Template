@@ -1,0 +1,38 @@
+
+struct data {
+	ll arr[4][4] ;
+	data() { mem(arr , 0 ) ; }
+	void operator=(data x) {
+		repi(i,2 ) repi(j  , 2)
+            this->arr[i][j] = x.arr[i][j] ;
+	}
+} ;
+
+data multiply(data x, data y ) {
+	data z ;
+
+	repi(i, 2) repi(j, 2) repi(k ,2)
+		z.arr[i][j] = (z.arr[i][j] + (x.arr[i][k]*y.arr[k][j])%mod )%mod;
+	return z ;
+
+}
+
+data expo(data A  , n ) {
+	if(n == 1 ) return A ; 
+	else if(!(n &1) ) { 
+		data B =  expo(A , n/2) ;
+		return myltiply(B ,B) ;  
+
+
+
+	} else { 
+
+		return multiply(A , expo( A ,n-1 ) ) ; 
+
+
+	}
+} 
+
+
+
+
