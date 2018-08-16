@@ -1,0 +1,35 @@
+
+ll a[M+4  ] , tree[M+2] , trick[M+2 ] ;
+
+void init(int node, int l , int r ) {
+    if( l >r ) return ;
+    if(l == r ){
+        tree[node] =  a[l] ;
+ 		trick[node] = 1;
+		return ;
+	}
+
+ 	int left = node*2 , right = left+1 , mid = (l+r )/2    ;
+
+	init( left , l , mid ) ;
+	init( right, mid+1 , r ) ;
+
+	//s
+}
+
+void update(int node, int l, int r , int s , int e,  int val ) {
+	if(l > e || r < s ){
+		return ;
+	}
+	if(l >= s && r <= e) {
+		tree[node] = val ;
+        return ;
+	}
+	int left = node*2 , right = left+1 , mid = (l+r)/2     ;
+
+	update( left , l , mid ,s , e , val ) ;
+	update( right, mid+1 , r, s, e , val ) ;
+
+	//
+
+}
