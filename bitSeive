@@ -1,0 +1,17 @@
+bool  checkprime(int x) {
+    if(x<2 ) return 1; 
+    return checkbit( prime[x/30] ,x%30) ;
+
+}
+void setval(int x  ) {
+    prime[x/30] = setbit(prime[x/30] , x%30 )  ;
+}
+void bitSeive() {
+    forn(i ,2 ,N ) {
+        if( checkprime(i)== 0 ) {
+            for(int j=i+i; j<N ; j+=i )
+                setval(j) ;
+        }
+    }
+    //dbg(checkprime(99) ) ;    
+}
