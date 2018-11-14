@@ -2,11 +2,11 @@
 ll binpow(ll n,ll x ,ll mod) {
     if(x==0) return 1; 
     if(x&1) {
-        ll ans = binExpo(n,x-1)%mod;
+        ll ans = binpow(n,x-1)%mod;
         return (n*ans )%mod ; 
 
     } else {
-        ll ans = binExpo(n , x/2)%mod ;
+        ll ans = binpow(n , x/2)%mod ;
         return (ans*ans)%mod ; 
 
     }
