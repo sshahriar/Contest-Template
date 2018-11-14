@@ -1,5 +1,5 @@
 
-ll binpow(ll n,ll x ) {
+ll binpow(ll n,ll x ,ll mod) {
     if(x==0) return 1; 
     if(x&1) {
         ll ans = binExpo(n,x-1)%mod;
@@ -10,5 +10,10 @@ ll binpow(ll n,ll x ) {
         return (ans*ans)%mod ; 
 
     }
+
+}
+
+ll modinv(ll x, ll mod ) { 
+    return binpow(x,mod-2 ,mod) ;
 
 }
