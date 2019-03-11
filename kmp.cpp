@@ -1,3 +1,4 @@
+// returns kmp fail table for given s
 vector<int> failTable(string s ) {
     int i,j;
     i = 0; 
