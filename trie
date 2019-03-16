@@ -1,0 +1,81 @@
+
+
+struct Node {
+    int cnt ; 
+    Node* nxt[2]  ;
+    Node() {    cnt = 0; rep(i,2)  nxt[i] = NULL ;  }
+} ;
+
+struct Trie {
+    Node *head , *curr , *dummy   ;
+    Trie() {
+        head = curr  = new Node() ;
+    }    
+    void insert(int x  ) {
+        curr = head; 
+        string s="" ; 
+        for(int i=30;i>=0; i--) {
+            if(checkbit(x,i) ) {
+                s += '1';
+            } else {
+                s += '0' ;
+            }
+        }
+        rep(i, sz(s) ) {
+            int tmp = s[i]-'0' ; // edit as req 
+            if(curr->nxt[tmp ] == NULL) {
+                curr->nxt[tmp] = new Node() ;
+
+
+            }
+            //dbg( s[i]  ) ;
+            curr = curr->nxt[tmp ] ;
+            curr->cnt++ ;
+
+        }
+
+    }
+
+    bool search(int x  ){
+        curr = head; 
+        
+        string s="" ; 
+        for(int i=30;i>=0; i--) {
+            s += ((int )checkbit(x,i) +'0') ;
+        }
+        rep(i,sz(s) ) {
+            int tmp = s[i]-'0' ;
+            if( curr->nxt[tmp] == NULL) 
+                return 0;
+            //dbg(curr->cnt , tmp)  ;
+            curr = curr->nxt[tmp] ;
+        
+        }
+
+        return (curr->cnt > 0 ) ;
+    }
+
+    void del(int x ) {
+        curr = head ;
+        string s="" ; 
+        for(int i=30;i>=0; i--) {
+            if(checkbit(x,i) ) {
+                s += '1';
+            } else {
+                s += '0' ;
+            }
+        }
+        
+        rep(i, sz(s ) ) {
+            int tmp = s[i]-'0' ;
+            curr = curr->nxt[tmp] ;
+            curr->cnt-- ; 
+
+
+        }
+
+
+    }
+ 
+} ; 
+
