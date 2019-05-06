@@ -4,7 +4,8 @@
 // returns failtable for given string or vector
 // input abaab
 // output 00112
-vector<int> failTable(vector<int> s ) { // change vector to string for string matching 
+// change vector to string for string matching 
+vector<int> failTable(vector<int> s ) { 
     int i,j; i = 0; j = 1; 
     vector<int >v(sz(s) ) ;
     for( ; j<sz(s) ;j++ ) {
@@ -33,7 +34,8 @@ vector<int> failTable(vector<int> s ) { // change vector to string for string ma
 
 // here s = actual string
 // and p =  pattern to be matched 
-bool match(vector<int>v  ,vector<int> s , vector<int>  p  ) { //change last two to string for str match
+ //change last two to string for str match
+bool match(vector<int>v  ,vector<int> s , vector<int>  p  ) {
     int f= 0 , curr= 0 , len= sz(v) ;
     rep(i , sz(p  ) ) {
         if(i==0) continue; 
@@ -51,7 +53,4 @@ bool match(vector<int>v  ,vector<int> s , vector<int>  p  ) { //change last two 
             }
         }
     return 0 ; 
-}
-
-// input abaab
-// output 00112
+} 
