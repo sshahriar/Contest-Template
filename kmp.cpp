@@ -1,5 +1,7 @@
 // returns kmp fail table for given s
-vector<int> failTable(string s ) {
+// works for string vector
+
+vector<int> failTable(vector<int> s ) {
     int i,j;
     i = 0; 
     j = 1; 
@@ -31,5 +33,42 @@ vector<int> failTable(string s ) {
 
     return v ; 
 }   
+// input abaab
+// output 00112
+
+bool match(vector<int>v  ,vector<int> s , vector<int>  p  ) {
+    int f= 0 , curr= 0 , len= sz(v) ;
+
+    // dbg(s, p) ;
+
+    rep(i , sz(p  ) ) {
+        if(i==0) continue; 
+        if(p[i] == s[curr ]) { 
+            curr++ ; 
+            if(curr==len) return 1 ; 
+        
+        } else{
+            //dbg("not matjc")  ;
+            while(curr>0) {
+
+                curr = v[curr-1]  ;
+                if(p[i] == s[curr] ) {
+                    curr++ ; 
+                    break ; 
+
+                } else {
+
+                }   
+
+            }
+ 
+        }
+
+       // dbg(i, curr );
+    }
+
+    return 0 ; 
+}
+
 // input abaab
 // output 00112
