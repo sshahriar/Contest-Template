@@ -1,8 +1,14 @@
 struct matrix {
     // first set the length of matrix   
     // y = ( [ matrix ]^k ) ) * [next state matrix] 
+    // f[n+1] = f[n] + f[n-1] + f[n-2] ... 
+    // f[ n+1 ] =      f[ n  ]
+    // f[ n   ] =  M * f[n-1 ]
+    // f[ n-1 ] =      f[n-2 ]
+    // design M accordingly ... 
+    
     int N ; 
-    long long arr[N+2][N +2 ] ;
+    long long arr[7][7 ] ;
     
     matrix(int n ) { 
         N = n ; 
