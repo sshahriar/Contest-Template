@@ -1,16 +1,16 @@
-#define N 3
 struct matrix {
     // first set the length of matrix   
     // y = ( [ matrix ]^k ) ) * [next state matrix] 
-    
+    int N ; 
     long long arr[N+2][N +2 ] ;
     
-    matrix() { 
+    matrix(int n ) { 
+        N = n ; 
         repi(i , N) repi(j , N)  arr[i][j] = 0; 
     }
     // returns unit matrix  
-    matrix(int dummy  ) {
-        
+    matrix(int n , int dummy  ) {
+        N = n;
         repi(i,N ) repi(j, N ) 
             if(i==j)arr[i][i] =1; 
             else arr[i][j] = 0; 
