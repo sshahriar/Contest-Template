@@ -1,3 +1,4 @@
+#define N 3
 struct matrix {
     // first set the length of matrix   
     // y = ( [ matrix ]^k ) ) * [next state matrix] 
