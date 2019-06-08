@@ -1,9 +1,8 @@
-
 // template for binary lifting 
 // first initiate the 0th col with first parent  
 // call query function for kth parent 
-int Log=5 ; 
-int sparse[M+2][Log +2 ] ;
+const int Log=20 ; 
+int sparse[M+2][Log+2] ;
 
 // returns kth  parent for id th node 
 // return -1  kth parent does not exist  
@@ -24,14 +23,14 @@ int SparseTableQuery(int id, int k) {
         if( curr<0) break ; 
 
     }
-    cout << endl; 
+    //cout << endl; 
     return par ; 
 }
 
-void SparseTableInit() {
-
+void SparseTableInit(int N ) {
+    int n=N ; 
     for(int j=1;  j< Log; j++ ) {
-        for(int i=1; i<= n ;i++) {
+        for(int i=0; i< N ;i++) {
             if(sparse[i ][ j-1 ] !=-1) {
                 sparse[i][j ]  = sparse[ sparse[i ][j -1] ][j-1]  ; 
 
@@ -40,8 +39,9 @@ void SparseTableInit() {
         }
     }
 
-    // repi(i, Log -1 ) {
-    //     rep(j , n) cout<< sparse[i][j] << ' ' ;
+    // rep(i, n ) {
+    //     cout << i << "-> " ;
+    //     rep(j , Log) cout<< sparse[i][j] << ' ' ;
     //     cout << endl ;  
 
     // }
