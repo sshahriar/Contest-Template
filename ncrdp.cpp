@@ -1,4 +1,5 @@
 int ncr[N][N] ;
+//nCr = n-1Cr + n-1Cr-1 
 void init() {
     ncr[0][0] =1 ;
     repi(i,n )
