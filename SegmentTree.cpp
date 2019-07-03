@@ -1,58 +1,42 @@
-struct SegTree  {   
-    vector<ll>tree ,lazy ; 
-    Multiply () {
-        tree.resize(n*4+100,1) ;
-        lazy.resize(n*4+100,1 ) ;
-    } 
-    void build (int node, int l , int r ) {
-        if(l > r ) return ;
-        if(l == r ) {
 
-            tree[node] =  a[l] ;
-            //dbg(tree[node], node) ;
-            return ;
-        }
-        int left = node*2 , right = left+1 , mid = (l+r )/2    ;
-        build( left , l , mid ) ;
-        build( right, mid+1 , r ) ;
+int a[M+2] , tree[4*M +7] , n ;
+queue<int>v[M+2]; 
 
-        tree[node] = modMul( tree[left], tree[right] ,mod   ) ;
-
-    }   
-
-    void update(int node, int l, int r , int s , int e,  ll  val ) {
-        if(l > e || r < s ){
-            return ;
-        }
-        if(l >= s && r <= e) {
-
-            lazy[node] = modMul( lazy[node] ,  val, mod  )  ;
-            ll tmp = modPow(val ,(ll)(r-l+1 ), mod) ;
-            tree[node] = modMul( tree[node] ,  tmp, mod  )  ;
-           // dbg(l, r ,val , tree[node] ,lazy[node] ) ;
-            return ; 
-        }
-        int left = node*2 , right = left+1 , mid = (l+r)/2     ;
-        update( left , l , mid ,s , e , val ) ;
-        update( right, mid+1 , r, s, e ,val ) ;
-        
-        tree[node] = modMul( tree[left], tree[right] ,mod   ) ;
-
+int  merge(int x,int y) {
+    return min(x, y ); 
+}
+void build(int id,int l, int r) {
+    if(l==r) {
+       // dbg(id,l ,r, a[l] )  ; 
+        tree[id ]= a[l ] ;
+        return ; 
     }
-    ll query (int node, int l, int r , int s , int e,    ll val ) {
-        if(l > e || r < s ){
-            return 1  ;
-        }
-        if(l >= s && r <= e) {
-           // dbg(l, r ) ; 
-            ll tmp = modPow(val,(ll)(r-l+1) , mod) ;
-            return  modMul(tmp ,tree[node],             mod );
-        }
-        int left = node*2 , right = left+1 , mid = (l+r)/2     ;
+    int mid = (l+r)>>1; 
+    build(id*2, l , mid );
+    build(id*2+1, mid+1 ,r );
 
-        ll ans1 = query ( left , l , mid ,s , e , modMul(val ,lazy[node],  mod) ) ;
-        ll ans2 = query ( right, mid+1 , r, s, e , modMul(val ,lazy[node] , mod )  ) ;
-        return modMul(ans1 , ans2 ,mod ) ; 
+    tree[id] = min(tree[id*2] , tree[id*2+1] ) ;  
+}
+
+int query(int id,int l, int r  ,int s,int e ) {
+    if(r<s or l>e) return M+55; 
+    if(l>=s and r<= e)  {
+        return tree[id] ;
     }
+    int mid = (l+r)>>1; 
+    return merge( query(id*2, l , mid,s,e) , query(id*2+1, mid+1 ,r,s,e ) ); 
 
-} ; 
+}
+
+void update(int id,int l, int r  ,int s,int e,int val ) {
+    if(r<s or l>e) return  ; 
+    if(l>=s  and r<= e) {
+        tree[id] =val ;
+        return ; 
+    }
+    int mid = (l+r)>>1; 
+    update(id*2, l , mid,s,e,val ) ;
+    update(id*2+1, mid+1 ,r,s,e, val  ) ; 
+    tree[id] = merge(tree[id*2] , tree[id*2+1]) ;
+
+ }
