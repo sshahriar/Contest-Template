@@ -1,17 +1,31 @@
-int fail[M+2 ] ;
-string s ;
-void kmp() {
-    fail[1]= 0 ;  // 1  based index 
-    for(int i=2; i<sz(s) ;i++) {
-        int curr= fail[i-1];
-        while(curr>0 and s[curr+1]==s[i] ) {
-            curr=fail[curr ]; 
-        }
-        if(s[curr+1]==s[i] )  ++curr ;
-        fail[i] = curr ;
 
-    }       
-    //repi(i, sz(s)-1) cout << fail[i] << " " ; cout <<endl; 
+int kmp[M+2 ] ;
+string text ; 
+void generatefail(string s ) {
+    rep(i , sz(s) )  kmp[i]= 0; 
+    forn(i,2, sz(s ) -1) {
+        int curr = kmp[i-1] ; 
+        while(curr >0 and s[i]!= s[curr+1 ]) {
+            curr = kmp[curr ] ;  
+        }
+        if(s[i] == s[curr+1] )  ++curr ;
+        kmp[i] = curr ;
+
+    }
+}
+
+int  match( string s ) {
+    int curr= 0 ,cnt = 0 , k =  sz(text )-min(sz(text)  , sz(s)  ) ;
+    s = "0"+ s;  
+    genfail(s) ; 
+    forn(i , k , sz(text) -1  ) {
+        while(curr>0 and s[curr+1 ]!= text[i] ) 
+            curr = kmp [curr ] ;    
+        if(s[curr+1 ] == text[i] ) curr++ ; 
+
+   
+    }
+    return curr  ;
 }
 
 
