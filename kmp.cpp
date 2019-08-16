@@ -17,7 +17,7 @@ void generatefail(string s ) {
 int  match( string s ) {
     int curr= 0 ,cnt = 0 , k =  sz(text )-min(sz(text)  , sz(s)  ) ;
     s = "0"+ s;  
-    genfail(s) ; 
+    generatefail(s) ; 
     forn(i , k , sz(text) -1  ) {
         while(curr>0 and s[curr+1 ]!= text[i] ) 
             curr = kmp [curr ] ;    
