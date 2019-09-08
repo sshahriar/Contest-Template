@@ -1,3 +1,5 @@
+
+//http://ideone.com/6NVoPD
 //
 #include<bits/stdc++.h>
 
