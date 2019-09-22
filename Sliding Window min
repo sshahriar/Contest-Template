@@ -1,0 +1,14 @@
+deque<int >dq ;
+ 
+void Add(int id )  {
+    while(sz(dq) and dp[dq.back() ] > dp[id] ) dq.pop_back() ; 
+    dq.push_back(id ); 
+ 
+    // cout << id << " -> "  ; 
+    // rep(i,sz(dq ) ) cout << dq[i] << ' '  ; cout << endl ;  
+    // cout << endl; 
+}  
+void Del(int id)  {
+    while(sz(dq) and dq.front() < id ) dq.pop_front() ; 
+ 
+}
