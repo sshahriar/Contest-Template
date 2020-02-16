@@ -1,42 +1,31 @@
-
-int a[M+2] , tree[4*M +7] , n ;
-queue<int>v[M+2]; 
-
-int  merge(int x,int y) {
-    return min(x, y ); 
+// range add min query 
+// 1 based indexing
+int tree[maxn*4+5] ,  lazy[maxn*4 +5];  
+int get(int id , int l,int r ){
+    r = min(m ,r)  ; 
+    return  pre[id][r]-pre[id][l-1] ; 
 }
-void build(int id,int l, int r) {
-    if(l==r) {
-       // dbg(id,l ,r, a[l] )  ; 
-        tree[id ]= a[l ] ;
-        return ; 
+void push(int id ,int l, int r ){
+    tree[id] += lazy[id ] ; 
+    if( l!=r) {
+        int lc =id*2 ;
+        lazy[lc ] += lazy[id]  ; 
+        lazy[lc+1 ] += lazy[id] ;
     }
-    int mid = (l+r)>>1; 
-    build(id*2, l , mid );
-    build(id*2+1, mid+1 ,r );
-
-    tree[id] = min(tree[id*2] , tree[id*2+1] ) ;  
-}
-
-int query(int id,int l, int r  ,int s,int e ) {
-    if(r<s or l>e) return M+55; 
-    if(l>=s and r<= e)  {
-        return tree[id] ;
-    }
-    int mid = (l+r)>>1; 
-    return merge( query(id*2, l , mid,s,e) , query(id*2+1, mid+1 ,r,s,e ) ); 
+    lazy[id ]=  0 ;  
 
 }
-
-void update(int id,int l, int r  ,int s,int e,int val ) {
-    if(r<s or l>e) return  ; 
-    if(l>=s  and r<= e) {
-        tree[id] =val ;
-        return ; 
+void upd(int id ,int l, int r , int s ,int e ,int val ) {
+    push(id,l,r) ;
+    // dbg(l,r,s, e) ;
+    if( r<s or l > e) return  ; 
+    if(l>=s and r<= e) {
+        lazy[id] += val ; 
+        push(id , l ,r )  ; 
+        return  ;
     }
-    int mid = (l+r)>>1; 
-    update(id*2, l , mid,s,e,val ) ;
-    update(id*2+1, mid+1 ,r,s,e, val  ) ; 
-    tree[id] = merge(tree[id*2] , tree[id*2+1]) ;
-
- }
+    int lc = id*2 , mid = (l+r)/2 ;
+    upd( lc, l, mid , s,e , val ) ; 
+    upd(lc+1 , mid+1,r , s, e ,val ) ; 
+    tree[id ] = max(tree[lc ]  ,tree[lc+1] ) ; 
+}
