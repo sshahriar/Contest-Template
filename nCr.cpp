@@ -12,16 +12,21 @@ void init() {
 
 
 //itration 
-ll  fact[M+ 2]  ,inv[M+2 ] ;
-void  func() {    
+
+int   fact[ maxn ]  ,inv[ maxn] ;
+void  process() {    
+    mod = mod2; 
     fact[0]=1;
-    repi(i, M) fact[i] = mul(fact[i-1], i*1LL )  ;  
-    rep(i,M) inv[i ] =  modInv( fact[i] ,mod); 
+    forn(i, 1 ,  maxn-1 ) fact[i] = mul(fact[i-1], i*1LL )  ;  
+    rep(i, maxn ) inv[i ] =  invmod( fact[i] ,mod); 
   
    // dbg_a(fact ) ;
 }
  
-ll ncr (ll n ,ll r  ) {
+int ncr (ll n ,ll r  ) {
+    if(fact[0] == 0 )  process() ;
+
+    if( n-r < 0 ) return   0 ; 
     ll nr = inv[n-r ] ; 
     n = fact[n ] ; 
     r = inv[r ] ;
