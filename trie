@@ -1,41 +1,52 @@
-
-
 struct Node {
     int cnt ; 
     Node* nxt[2]  ;
     Node() {    cnt = 0; rep(i,2)  nxt[i] = NULL ;  }
 } ;
-
+int len =2 ; 
 struct Trie {
     Node *head , *curr , *dummy   ;
     Trie() {
         head = curr  = new Node() ;
     }    
-    void insert(int x  ) {
-        curr = head; 
-        string s="" ; 
-        for(int i=30;i>=0; i--) {
-            if(checkbit(x,i) ) {
-                s += '1';
-            } else {
-                s += '0' ;
-            }
-        }
-        rep(i, sz(s) ) {
-            int tmp = s[i]-'0' ; // edit as req 
-            if(curr->nxt[tmp ] == NULL) {
-                curr->nxt[tmp] = new Node() ;
-
-
-            }
-            //dbg( s[i]  ) ;
-            curr = curr->nxt[tmp ] ;
-            curr->cnt++ ;
+    void insert(int id ,int x , Node* curr   ) {
+        curr->cnt++ ; 
+        if(id<0) return  ;
+        if(checkbit(x,id) ) {
+            if(curr->nxt[1]==NULL) curr->nxt[1] = new Node() ; 
+            insert(id-1, x, curr->nxt[1] )  ; 
+        } else {
+            if(curr->nxt[0]==NULL) curr->nxt[0] = new Node() ; 
+            insert(id-1, x, curr->nxt[0] )  ; 
+       
 
         }
-
     }
+    void  insert(int  x ) {
+        curr = head  ;  
+        insert(len , x , curr)  ; 
+    }
+    int func(int  id  , int  x   , Node  *curr){
+        if( curr==0  or id< 0 ) return 0 ; 
+        int  bit  =  checkbit(x, id) , want = 1<<id   , l= 0,r =0 ; 
+        if(curr->nxt[0]!= 0)  l = curr->nxt[0]->cnt  ; 
+        if(curr->nxt[1]!=0)   r = curr->nxt[1]->cnt ; 
+    
+        if( bit) {
+            if( r  <  want )  {
+                return func(id-1  , x, curr->nxt[1]) ;
+            }
+            return  want  + func( id-1,x , curr->nxt[0] )  ;  
+ 
 
+        } else {
+            if(  l<want  ) 
+                return  func( id-1, x, curr->nxt[0] ) ;  
+            return want + func( id-1 , x,  curr->nxt[1] )  ; 
+
+        }
+    }
+    
     bool search(int x  ){
         curr = head; 
         
@@ -55,27 +66,6 @@ struct Trie {
         return (curr->cnt > 0 ) ;
     }
 
-    void del(int x ) {
-        curr = head ;
-        string s="" ; 
-        for(int i=30;i>=0; i--) {
-            if(checkbit(x,i) ) {
-                s += '1';
-            } else {
-                s += '0' ;
-            }
-        }
-        
-        rep(i, sz(s ) ) {
-            int tmp = s[i]-'0' ;
-            curr = curr->nxt[tmp] ;
-            curr->cnt-- ; 
-
-
-        }
-
-
-    }
- 
 } ; 
+
 
