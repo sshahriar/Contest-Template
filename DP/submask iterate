@@ -1,0 +1,2 @@
+for (int mask2= mask; mask2; mask2=(mask2-1)&mask )
+            // do crapp
