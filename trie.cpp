@@ -3,7 +3,7 @@ struct Node {
     Node* nxt[2]  ;
     Node() {    cnt = 0; rep(i,2)  nxt[i] = NULL ;  }
 } ;
-int len =2 ; 
+int len = 35; 
 struct Trie {
     Node *head , *curr , *dummy   ;
     Trie() {
@@ -12,6 +12,7 @@ struct Trie {
     void insert(int id ,int x , Node* curr   ) {
         curr->cnt++ ; 
         if(id<0) return  ;
+
         if(checkbit(x,id) ) {
             if(curr->nxt[1]==NULL) curr->nxt[1] = new Node() ; 
             insert(id-1, x, curr->nxt[1] )  ; 
@@ -27,26 +28,40 @@ struct Trie {
         insert(len , x , curr)  ; 
     }
     int func(int  id  , int  x   , Node  *curr){
-        if( curr==0  or id< 0 ) return 0 ; 
-        int  bit  =  checkbit(x, id) , want = 1<<id   , l= 0,r =0 ; 
-        if(curr->nxt[0]!= 0)  l = curr->nxt[0]->cnt  ; 
-        if(curr->nxt[1]!=0)   r = curr->nxt[1]->cnt ; 
-    
-        if( bit) {
-            if( r  <  want )  {
-                return func(id-1  , x, curr->nxt[1]) ;
+        if( curr==0   ) return 0 ; 
+        curr->cnt-- ;
+        if(id<0) return  0  ;   
+        int  bit  =  checkbit(x, id)  ;  
+        if( ( curr->nxt[0]!=0 and  curr->nxt[1] != 0) and 
+                (curr->nxt[0]->cnt > 0 and  curr->nxt[1]->cnt>0)  )  {
+
+            if( bit==0 ) {
+                return   func(id-1 ,x  , curr->nxt[0] )  ; 
+            } else {
+                return   func(id-1 ,x  , curr->nxt[1] )  ; 
             }
-            return  want  + func( id-1,x , curr->nxt[0] )  ;  
+            
+        }else if(curr->nxt[0]!=0 and curr->nxt[0]->cnt>0) {
+            if(bit )  return func(id-1 ,x, curr->nxt[0 ] ) +  (1LL<<id );
+            else  return func(id-1 ,x, curr->nxt[0 ] ) ;
+        
+
+        } else if(curr->nxt[1]!=0 and curr->nxt[1]->cnt>0) {
+         
+            if(bit )  return func(id-1 ,x, curr->nxt[1 ] )   ;
+            else  return func(id-1 ,x, curr->nxt[1 ] )+ (1LL<<id ) ;
+        }
+
  
 
-        } else {
-            if(  l<want  ) 
-                return  func( id-1, x, curr->nxt[0] ) ;  
-            return want + func( id-1 , x,  curr->nxt[1] )  ; 
-
-        }
+ 
     }
-    
+    int func1( int x )  {
+        curr =  head ; 
+        return  func( len  ,x ,curr )   ;
+
+    }  
+ 
     bool search(int x  ){
         curr = head; 
         
