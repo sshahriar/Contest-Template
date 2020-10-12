@@ -35,3 +35,23 @@ int ncr (ll n ,ll r  ) {
     return mul(n, mul(r,nr) )   ; 
  
 }
+/////////////////////
+int   fact[ maxn ]  ,inv[ maxn] ;
+void  process() {    
+    // mod = mod2; 
+    fact[0]=1LL;
+    forn(i, 1 ,  maxn-1 ) fact[i] = mul(fact[i-1], i*1LL )  ;  
+    rep(i, maxn ) inv[i ] =  invmod( fact[i] ,mod); 
+  
+   // dbg_a(fact ) ;
+}
+ 
+int ncr (ll n ,ll r  ) {
+ 
+    if( n-r < 0 ) return   0 ; 
+    ll nr =   inv[n-r ] ; 
+    n = fact[n ] ; 
+    r = inv[r ] ; 
+    return mul(n, mul(r,nr) )   ; 
+ 
+}
