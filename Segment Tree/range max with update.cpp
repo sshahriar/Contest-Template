@@ -32,7 +32,7 @@ int query(int id ,int l, int r , int s,int e ) {
     return  max(x, y) ;  
 
 }
- 
+int n ;  
 void upd(int l  , int  val  ) {
     upd(1,1,n,l,l , val )  ; 
 }
