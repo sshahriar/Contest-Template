@@ -1,5 +1,6 @@
 //   upto 3e8 works fine ...
-itset< maxn  >isPrime  ; 
+bitset< maxn  >isPrime  ; 
+
 int cs = 0;
 void  seive(  )  {
     for(int i=3 ;i*i < maxn ;i+=2)  if(!isPrime[i])  {
