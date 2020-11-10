@@ -1,0 +1,28 @@
+
+int int_read(void){
+  int res, c;
+  for(;;){
+    c = getchar() - '0';
+    if(0<=c && c<=9){ res = c; break; }
+  }
+  for(;;){
+    c = getchar() - '0';
+    if(0<=c && c<=9){ res = res*10 + c; continue; }
+    break;
+  }
+  return res;
+}
+
+ll ll_read(void){
+  ll res; int c;
+  for(;;){
+    c = getchar() - '0';
+    if(0<=c && c<=9){ res = c; break; }
+  }
+  for(;;){
+    c = getchar() - '0';
+    if(0<=c && c<=9){ res = res*10 + c; continue; }
+    break;
+  }
+  return res;
+}
