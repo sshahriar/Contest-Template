@@ -1,8 +1,5 @@
  
-#include <bits/stdc++.h>
-// #include <ext/pb_ds/assoc_container.hpp>
-// #include <ext/pb_ds/tree_policy.hpp>
-// using namespace __gnu_pbds;
+#include <bits/stdc++.h> 
 using namespace std;
 #define ff              first
 #define ss              second
@@ -45,14 +42,14 @@ template<typename T>ostream &operator<<(ostream & os, const map< T ,T> &Map ){os
 template<typename T>ostream &operator<<(ostream & os, const set< T > &Set  ){os << "[ "; repit(it , Set ) os <<  *it  << ' ' ; return os << " ]\n" ; }  
 template<typename T>ostream &operator<<(ostream & os, const multiset< T > &Set) {os << "[ "; repit(it , Set )os <<  *it  << ' ' ; return os << " ]\n" ; }  
 template<class T> string to_str(T t){stringstream ss; ss<<t; return ss.str();} 
-// typedef tree<   int ,     // change type 
-//               null_type, 
-//               less_equal  < int  >  ,  // change type ..    
-//               rb_tree_tag,
-//               tree_order_statistics_node_update> ordered_set;  
- 
-    // order_of_key (k) : Number of items strictly smaller than k .
-    // find_by_order(k) : K-th element in a set (counting from zero).
+//  #include <ext/pb_ds/assoc_container.hpp> // Common file
+// #include <ext/pb_ds/tree_policy.hpp> // Including tree_order_statistics_node_update
+// using namespace __gnu_pbds;
+// template<class T> using ordered_set = tree<T, null_type , less<T> , rb_tree_tag , tree_order_statistics_node_update> ; 
+// ordered_set<int>s ;
+// order_of_key (k) : Number of items strictly smaller than k . 
+// find_by_order(k) : K-th element in a set (counting from zero).
+
 template < typename T > 
 T powmod(T a,T b  ,T mod = mod ) {
     if( !b ) return 1;
