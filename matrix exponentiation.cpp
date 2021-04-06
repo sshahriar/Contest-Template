@@ -1,3 +1,4 @@
+  
 struct matrix {
     // first set the length of matrix   
     // y = ( [ matrix ]^k ) ) * [next state matrix] 
@@ -9,7 +10,7 @@ struct matrix {
     
     int N ; 
     long long arr[7][7 ] ;
-    
+    matrix(){} ;
     matrix(int n ) { 
         N = n ; 
         repi(i , N) repi(j , N)  arr[i][j] = 0; 
@@ -17,6 +18,7 @@ struct matrix {
     // returns unit matrix  
     matrix(int n , int dummy  ) {
         N = n;
+        // dbg(dummy );
         repi(i,N ) repi(j, N ) 
             if(i==j)arr[i][i] =1; 
             else arr[i][j] = 0; 
@@ -28,18 +30,20 @@ struct matrix {
     }
 
     matrix multiply(matrix x, matrix y ) {
-        matrix z ;
+        matrix z (N);
 
         repi(i, N ) repi(j, N ) repi(k , N )
             z.arr[i][j] =add(z.arr[i][j] ,mul(x.arr[i][k],y.arr[k][j])  ) ;
         return z ;
     }
     matrix expo(matrix A  ,int  n ) {
-        //  dbg(n ) ;
+         // dbg(n ) ;
         if(n == 0 ) {
-            return matrix (1) ;
+            return matrix (N,1) ;
         } 
         else if(n &1 ) { 
+
+            // dbg(  n , "insinde " ) ;
             return multiply(A , expo( A ,n-1 ) ) ; 
 
         } else { 
@@ -67,3 +71,24 @@ struct matrix {
     }
     
 } ;
+
+void  solve() { 
+ 
+    matrix d (2 )  ; 
+    d.init()  ; 
+    d   =  d.expo(d,3)  ;
+    d.trace()  ; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+}    
